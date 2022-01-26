@@ -1,0 +1,66 @@
+service: classification-photo-app  ##name of the service
+
+configValidationMode: error
+
+plugins:
+  - serverless-deployment-bucket
+provider:
+  name: aws
+  region: us-east-1 
+  timeout: 300
+  memorySize: 5000
+  lambdaHashingVersion: 20201221
+  ecr:
+    images:
+      classify_photo_lambda:
+        path: ./
+
+  deploymentBucket:
+    name: classification-photo-app ## name of s3 bucket with model 
+    serverSideEncryption: AES256
+
+  iamRoleStatements: ## allow role to read from s3 
+    - Effect: Allow
+      Action: 
+        - s3:GetObject
+        - s3:PutObject
+      Resource:
+        - "arn:aws:s3:::classification-photo-app/*"  ## name of s3 bucket with model 
+
+functions:
+  classify_photo_lambda:
+    name: classify_photo_lambda
+    description: classification 
+    image:
+      name: classify_photo_lambda
+      command:
+        - classify_photo.lambda_handler
+    events:  
+      - http: 
+          path:  /classify-image
+          method: GET
+          cors: true
+  classify_upload_photo_lambda:
+    name:  upload_photo_lambda ## aws lambda function
+    description: upload photo   
+    image:
+      name: classify_photo_lambda
+      command:
+        - upload_photo.lambda_handler
+    events:  
+      - http: 
+          path:  /upload-image
+          method: POST
+          cors: true
+  classify_download_photo_lambda:
+    name:  download_photo_lambda ## aws lambda function
+    description: download photo   
+    image:
+      name: classify_photo_lambda
+      command:
+        - download_photo.lambda_handler
+    events:  
+      - http: 
+          path:  /download-image
+          method: GET
+          cors: true

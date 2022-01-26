@@ -1,0 +1,9 @@
+{
+  "name": "classification-photo-app",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-deployment-bucket": "^1.5.1"
+  }
+}
