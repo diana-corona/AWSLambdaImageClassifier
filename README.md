@@ -1,5 +1,5 @@
 # Photo Classificartion Api
-API to upload, download, and classify photos from s3
+Image classification API that uploads, downloads and classify images from s3 using ResNet50 (ImageNet) pretrained neural network.
 
 ### To deploy 
 1. Run 'serverless deploy' to upload the lambda function to aws
@@ -11,5 +11,8 @@ API to upload, download, and classify photos from s3
 ## /upload-image
 1. Upload image to s3, creates unique names each time
 
-## /Download-image
-1. Download image from s3
+## /download-image
+1. Download image from s3 repository
+
+## /delete-image
+1. Delete image from s3 repository
