@@ -24,6 +24,7 @@ provider:
       Action: 
         - s3:GetObject
         - s3:PutObject
+        - s3:DeleteObject
       Resource:
         - "arn:aws:s3:::classification-photo-app/*"  ## name of s3 bucket with model 
 
@@ -63,4 +64,16 @@ functions:
       - http: 
           path:  /download-image
           method: GET
+          cors: true
+  classify_delete_photo_lambda:
+    name:  delete_photo_lambda ## aws lambda function
+    description: download photo   
+    image:
+      name: classify_photo_lambda
+      command:
+        - delete_photo.lambda_handler
+    events:  
+      - http: 
+          path:  /delete-image
+          method: DELETE
           cors: true
