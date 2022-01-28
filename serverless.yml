@@ -35,7 +35,7 @@ functions:
     image:
       name: classify_photo_lambda
       command:
-        - classify_photo.lambda_handler
+        - app/classify_photo.lambda_handler
     events:  
       - http: 
           path:  /classify-image
@@ -47,7 +47,7 @@ functions:
     image:
       name: classify_photo_lambda
       command:
-        - upload_photo.lambda_handler
+        - app/upload_photo.lambda_handler
     events:  
       - http: 
           path:  /upload-image
@@ -59,7 +59,7 @@ functions:
     image:
       name: classify_photo_lambda
       command:
-        - download_photo.lambda_handler
+        - app/download_photo.lambda_handler
     events:  
       - http: 
           path:  /download-image
@@ -71,7 +71,7 @@ functions:
     image:
       name: classify_photo_lambda
       command:
-        - delete_photo.lambda_handler
+        - app/delete_photo.lambda_handler
     events:  
       - http: 
           path:  /delete-image
