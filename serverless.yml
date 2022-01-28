@@ -50,7 +50,7 @@ functions:
         - app/upload_photo.lambda_handler
     events:  
       - http: 
-          path:  /upload-image
+          path:  /image
           method: POST
           cors: true
   classify_download_photo_lambda:
@@ -62,7 +62,7 @@ functions:
         - app/download_photo.lambda_handler
     events:  
       - http: 
-          path:  /download-image
+          path:  /image
           method: GET
           cors: true
   classify_delete_photo_lambda:
@@ -74,6 +74,6 @@ functions:
         - app/delete_photo.lambda_handler
     events:  
       - http: 
-          path:  /delete-image
+          path:  /image
           method: DELETE
           cors: true
